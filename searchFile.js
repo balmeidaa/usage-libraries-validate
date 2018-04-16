@@ -2,6 +2,8 @@
 
 const fileReader = require('fs');
 
+
+
 /*
 *@param libraryList: array with the names of the libraries
 *@param fileList: array with files and their path
@@ -9,52 +11,30 @@ const fileReader = require('fs');
 */
 const readFiles = (libraryList,fileList) => {
 	
-	//maps libraries to files
-	let mapFile;
+//references to all libraries that a file is using
+let unusedLibraries = [];
 	
-	//@TODO read files and seek for library refrerences
-	for(file of fileList){
-	
-	//references to all libraries that a file is using
-	let libraryReferences = [];
+	for(const filename of fileList){
 		
 	//reading file	
-	 fileReader.readFile(file, 'utf8', (error, data) => {
-        if (error) {
-			throw 'File not found';                
-			continue;
-        }
+	 const data = fileReader.readFileSync(filename, 'utf8');
 
-		//searches for libs
-		for(library of libraryList){
+		//searches for libraries that are not in use
+		for(const library of libraryList){
+			
 			const regularExpression = new RegExp(library);
-			
-			if(data.match(regularExpression) === true){
-				libraryReferences.add(file);
-			}
-			
+		
+		if(data.match(regularExpression) === null){
+				
+				unusedLibraries.push(library);
+				
+				}	
 		}
-		
-		mapFile.set(getFileName(file),libraryReferences);
-    });
-		
-			
+				
 	}
 	
-	return map;
+	return unusedLibraries;
 };
 
-
-/*
-*@param file: string of file with full path
-*@description return file name without the path
-*/
-const getFileName = (file) => {
-	
-	const regularExpression = '(.+\.js)$';
-		
-	return file.match(regularExpression);
-}
-
-
 module.exports = {readFiles};
+
