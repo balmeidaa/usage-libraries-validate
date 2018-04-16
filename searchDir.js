@@ -16,7 +16,9 @@ const _getAllFilesFromFolder = (dir) => {
             } else {
                 const validate = new RegExp ('\w*\.js$');
                 const isJs = validate.test(file);
+
                 if (isJs  === true){
+
                     results.push(file);
                 }
             }
@@ -28,5 +30,3 @@ const _getAllFilesFromFolder = (dir) => {
 };
 
 module.exports = {_getAllFilesFromFolder};
-
-
