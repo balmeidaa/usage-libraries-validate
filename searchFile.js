@@ -2,8 +2,6 @@
 
 const fileReader = require('fs');
 
-
-
 /*
 *@param libraryList: array with the names of the libraries
 *@param fileList: array with files and their path
@@ -11,22 +9,19 @@ const fileReader = require('fs');
 */
 const readFiles = (libraryList,fileList) => {
 	
-//references to all libraries that a file is using
-let unusedLibraries = [];
+let unusedLibraries = new Set();
 	
 	for(const filename of fileList){
 		
-	//reading file	
 	 const data = fileReader.readFileSync(filename, 'utf8');
-
-		//searches for libraries that are not in use
+		
 		for(const library of libraryList){
 			
 			const regularExpression = new RegExp(library);
 		
-		if(data.match(regularExpression) === null){
+			if(data.match(regularExpression) === null){
 				
-				unusedLibraries.push(library);
+				unusedLibraries.add(library);
 				
 				}	
 		}
