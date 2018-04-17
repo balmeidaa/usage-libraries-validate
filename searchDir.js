@@ -1,32 +1,31 @@
 'use strict';
+const fileSystem = require('fs');
+const results = [];
 
+//agregar archivs html , 
 const _getAllFilesFromFolder = (dir) => {
-    const filesystem = require('fs');
-    const results = [];
 
-    filesystem.readdirSync(dir).forEach(function(file) {
-
+    const allFile = fileSystem.readdirSync(dir);
+    for (const file of allFile) {
         if (file !== 'node_modules'){
-            
-            file = dir+'/'+file;
-            const stat = filesystem.statSync(file);
+            const directory = dir+'/'+file;
+            const stat = fileSystem.statSync(directory);
 
             if (stat && stat.isDirectory()) {
-                file = results.concat(_getAllFilesFromFolder(file));
+                _getAllFilesFromFolder(directory);
             } else {
                 const validate = new RegExp ('\w*\.js$');
                 const isJs = validate.test(file);
-
                 if (isJs  === true){
-
                     results.push(file);
                 }
             }
         }
-    });
- if (results.length > 0 ){
-    return results;
- }
+    }
+    if (results.length > 0 ){
+        return results;
+    }
 };
 
 module.exports = {_getAllFilesFromFolder};
+
