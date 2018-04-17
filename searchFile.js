@@ -25,8 +25,8 @@ let unusedLibraries = [];
 	
 		for(const library of libraryList){
 				 
-				const regularExpression = new RegExp(library);
-			
+			const regularExpression = new RegExp(`${library}|${library}\.js$`);
+				
 				if(regularExpression.test(data) === true ){
 				    libraryFound.set(library,true);
 	

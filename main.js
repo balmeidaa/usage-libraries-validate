@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs');
+const chalk = require('chalk');
 
 const core = require('./lib/index');
 const fileReader = require('./searchFile');
@@ -14,24 +15,23 @@ let {packageJSON, bowerJSON} = '';
 
 try {
     packageJSON = fs.readFileSync('package.json', 'UTF-8');
-	//bowerJSON = fs.readFileSync('bower.json', 'UTF-8');
-
+	
 	libs = core.getDependenciesImported(packageJSON);
 	
    } catch (error) {
-    console.log((`The file ${error.path} is not found yet.`));
+    console.log(chalk.red(`The file ${error.path} is not found yet.`));
 }
 
 
 const notUsed = fileReader.readFiles(libs,fileList);
 
 if(notUsed.length > 0){
-console.log('\nLibraries that are not in use are:\n');
+console.log(chalk.yellow('\nLibraries that are not in use are:\n'));
 
 	for(const lib of notUsed){
-		 console.log(`* ${lib}`);
+		 console.log(chalk.yellow(`* ${lib}`));
 	 }
 }else{
-console.log('\nAll Libraries are in use...\n');
+console.log(chalk.green('\nAll Libraries are in use...\n'));
 
 }
