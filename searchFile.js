@@ -13,37 +13,41 @@ let unusedLibraries = new Set();
 	
 	const libraryFound = new Map();
 	
-	for(const library of libraryList){
+	for(const library in libraryList){
 				
 		libraryFound.set(library,false);
 	}
 	
 	for(const filename of fileList){
-	
+		
 	try{	
 
 	const data = fileReader.readFileSync(filename, 'utf8');
 	
-	
-		for(const library of libraryList){
+		for(const library in libraryList){
 				
 				const regularExpression = new RegExp(library);
 			
-				if(data.match(regularExpression) !== null && libraryFound.get(claveObj) === false ){
-					libraryFound.set(library,true);
-					unusedLibraries.add(library);
-					
+				if(regularExpression.test(data) === true ){
+	
+				libraryFound.set(library,true);
+	
 					}	
 			}
 			
 	}catch(error){
-		console.log(`File not found ${error.path}`)
+		console.log(`File not found ${error}`)
 	}
 		
 		
 				
 	}
 	
+	for(const found of libraryFound){
+		if(libraryFound.get(found) === false ){
+			unusedLibraries.add(library);
+		}
+	}
 	return unusedLibraries;
 };
 
