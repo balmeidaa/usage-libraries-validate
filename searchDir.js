@@ -2,9 +2,9 @@
 const fileSystem = require('fs');
 const results = [];
 
-//agregar archivs html , 
 const _getAllFilesFromFolder = (dir) => {
 
+    try{
     const allFile = fileSystem.readdirSync(dir);
     for (const file of allFile) {
         if (file !== 'node_modules'){
@@ -14,7 +14,7 @@ const _getAllFilesFromFolder = (dir) => {
             if (stat && stat.isDirectory()) {
                 _getAllFilesFromFolder(directory);
             } else {
-                const validate = new RegExp ('\w*\.js$');
+                const validate = new RegExp ('\w*\.js$|.html$');
                 const isJs = validate.test(file);
                 if (isJs  === true){
                     results.push(directory);
@@ -25,6 +25,9 @@ const _getAllFilesFromFolder = (dir) => {
     if (results.length > 0 ){
         return results;
     }
+    	}catch(error){
+		console.log(`%${error.name}-${error.message}%`)
+	}
 };
 
 module.exports = {_getAllFilesFromFolder};
