@@ -12,19 +12,27 @@ const readFiles = (libraryList,fileList) => {
 let unusedLibraries = new Set();
 	
 	for(const filename of fileList){
-		
-	 const data = fileReader.readFileSync(filename, 'utf8');
-		
+	
+	try{	
+
+	const data = fileReader.readFileSync(filename, 'utf8');
+	
 		for(const library of libraryList){
+				
+				const regularExpression = new RegExp(library);
 			
-			const regularExpression = new RegExp(library);
+				if(data.match(regularExpression) === null){
+					
+					unusedLibraries.add(library);
+					
+					}	
+			}
+			
+	}catch(error){
+		console.log(`File not found ${error.path}`)
+	}
 		
-			if(data.match(regularExpression) === null){
-				
-				unusedLibraries.add(library);
-				
-				}	
-		}
+		
 				
 	}
 	
