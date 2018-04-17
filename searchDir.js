@@ -6,9 +6,7 @@ const results = [];
 const _getAllFilesFromFolder = (dir) => {
 
     const allFile = fileSystem.readdirSync(dir);
-
     for (const file of allFile) {
-
         if (file !== 'node_modules'){
             const directory = dir+'/'+file;
             const stat = fileSystem.statSync(directory);
@@ -24,12 +22,10 @@ const _getAllFilesFromFolder = (dir) => {
             }
         }
     }
-    //termina for
     if (results.length > 0 ){
         return results;
     }
 };
 
-
-console.log(_getAllFilesFromFolder('./'));
+//console.log(_getAllFilesFromFolder('./'));
 
