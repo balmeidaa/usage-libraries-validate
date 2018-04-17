@@ -17,7 +17,7 @@ const _getAllFilesFromFolder = (dir) => {
                 const validate = new RegExp ('\w*\.js$');
                 const isJs = validate.test(file);
                 if (isJs  === true){
-                    results.push(file);
+                    results.push(directory);
                 }
             }
         }
