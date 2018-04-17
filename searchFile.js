@@ -11,18 +11,26 @@ const readFiles = (libraryList,fileList) => {
 	
 let unusedLibraries = new Set();
 	
+	const libraryFound = new Map();
+	
+	for(const library of libraryList){
+				
+		libraryFound.set(library,false);
+	}
+	
 	for(const filename of fileList){
 	
 	try{	
 
 	const data = fileReader.readFileSync(filename, 'utf8');
 	
+	
 		for(const library of libraryList){
 				
 				const regularExpression = new RegExp(library);
 			
-				if(data.match(regularExpression) === null){
-					
+				if(data.match(regularExpression) !== null && libraryFound.get(claveObj) === false ){
+					libraryFound.set(library,true);
 					unusedLibraries.add(library);
 					
 					}	
