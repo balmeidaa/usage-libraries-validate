@@ -8,44 +8,38 @@ const fileReader = require('fs');
 *@description reads files to search if the library is in use
 */
 const readFiles = (libraryList,fileList) => {
-	
-let unusedLibraries = new Set();
+ 
+let unusedLibraries = [];
 	
 	const libraryFound = new Map();
 	
-	for(const library in libraryList){
+	for(const library of libraryList){
 				
 		libraryFound.set(library,false);
 	}
-	
-	for(const filename of fileList){
 		
-	try{	
+	 	
+	for(const filename of fileList){
 
 	const data = fileReader.readFileSync(filename, 'utf8');
 	
-		for(const library in libraryList){
-				
+		for(const library of libraryList){
+				 
 				const regularExpression = new RegExp(library);
 			
 				if(regularExpression.test(data) === true ){
-	
-				libraryFound.set(library,true);
+				    libraryFound.set(library,true);
 	
 					}	
-			}
-			
-	}catch(error){
-		console.log(`File not found ${error}`)
-	}
-		
-		
+			}	
 				
 	}
-	
-	for(const found of libraryFound){
-		if(libraryFound.get(found) === false ){
-			unusedLibraries.add(library);
+	 
+	for(const [key,value] of libraryFound){
+ 
+		if(libraryFound.get(key) === false ){
+		
+			unusedLibraries.push(key);
 		}
 	}
 	return unusedLibraries;
