@@ -1,7 +1,12 @@
 'use strict';
 const fileSystem = require('fs');
+const chalk = require('chalk');
 const results = [];
 
+/**
+ * @description function to list the PATH of the files .js and .html
+ * @param dir location folder
+ */   
 const _getAllFilesFromFolder = (dir) => {
 
     try{
@@ -26,7 +31,7 @@ const _getAllFilesFromFolder = (dir) => {
         return results;
     }
     	}catch(error){
-		console.log(`%${error.name}-${error.message}%`)
+        console.log(chalk.red(`Unexpected error${error.name}-${error.message}%`));
 	}
 };
 
