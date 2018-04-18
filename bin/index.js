@@ -2,4 +2,6 @@
 
 'use strict';
 
-require('../lib/index');
+const core = require('../lib/index');
+
+core.init();
