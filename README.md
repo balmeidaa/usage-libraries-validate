@@ -9,21 +9,20 @@ Make sure you have [Node.js](http://nodejs.org/).
 Have a project with node.
 
 ```sh
+To see and clone the source code of the project:
+
 git clone git@github.com:alfonsorios96/usage-libraries-validate.git # or clone your own fork
-cd "your-project"
 ```
 ## Install
-
+To install the module in your project node
 ```
 npm install -g usage-libraries-validate
-
 ```
 
 ### How to use:
 
 ```
 usage-libraries-validate
-
 ```
 
 ### Credits ###
