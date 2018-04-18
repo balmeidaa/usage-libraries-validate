@@ -1,11 +1,14 @@
 {
   "name": "usage-libraries-validate",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Checks for unused libraries in your project",
-  "main": "main.js",
+  "main": "./lib/index.js",
+  "bin": {
+    "usage-libraries-validate": "./bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node main.js"
+    "start": "node lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/balmeidaa/usage-libraries-validate#readme",
   "dependencies": {
-    "chalk": "^2.3.2"
+    "chalk": "^2.3.2",
+    "commander": "^2.15.1"
   }
 }
