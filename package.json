@@ -7,7 +7,7 @@
     "usage-libraries-validate": "./bin/index.js"
   },
   "scripts": {
-    "test": "jestst",
+    "test": "jest",
     "start": "node lib/index.js"
   },
   "repository": {
