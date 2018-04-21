@@ -6,12 +6,23 @@ This module allows to the user developer match the libraries or dependencies if 
 ## Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/).
+Have a project with node.
 
 ```sh
+To see and clone the source code of the project:
+
 git clone git@github.com:alfonsorios96/usage-libraries-validate.git # or clone your own fork
-cd usage-libraries-validate
-npm install - basic command to install the necessary libraries.
-npm start - command to execute the comparison.
+```
+## Install
+To install the module in your project node
+```
+npm install -g usage-libraries-validate
+```
+
+### How to use:
+
+```
+usage-libraries-validate
 ```
 
 ### Credits ###
