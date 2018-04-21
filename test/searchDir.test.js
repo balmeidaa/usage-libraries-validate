@@ -3,8 +3,12 @@
 const core = require('../lib/searchDir');
 const dummy = require('./dummy/searchDir.dummy');
 
-test('_getAllFilesFromFolder without folders', () => {
-    expect(core._getAllFilesFromFolder('./'))
-        .toEqual(expect.arrayContaining([]));
-    dummy.dirStub.restore();
-});
+/*
+* path sea correcto o valido
+* directorio valido 
+*/
+test('validateNameDir',() =>{
+expect(core.validateNameDir(dummy.pathDummy, dummy.fileDummy))
+.toBe(true);
+}
+);
