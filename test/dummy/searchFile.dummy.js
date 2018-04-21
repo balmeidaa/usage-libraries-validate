@@ -1,10 +1,10 @@
 'use strict'
 
 const sinon = require('sinon');
-const fileReader = require('fs');
+const fs = require('fs');
 
 
-const fileStub = sinon.stub(fileReader, 'readFileSync').callsFake(() => {
+const fileStub = sinon.stub(fs, 'readFileSync').callsFake(() => {
     return '\'use strict\' const sinon = require(\'sinon\')\; const fileSystem = require(\'fs\');';
 });
 
